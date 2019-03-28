@@ -24,16 +24,19 @@ template<int_t N>
 struct is_int_<int_<N>> { static const bool value = true; };
 
 template<class N, bool fizz = !(N::value % 3), bool buzz = !(N::value % 5)>
-struct fizzbuzz { using type = N; };
+struct fizzbuzz_impl { using type = N; };
 
 template<int_t N>
-struct fizzbuzz<int_<N>, true, false> { using type = Fizz; };
+struct fizzbuzz_impl<int_<N>, true, false> { using type = Fizz; };
 
 template<int_t N>
-struct fizzbuzz<int_<N>, false, true> { using type = Buzz; };
+struct fizzbuzz_impl<int_<N>, false, true> { using type = Buzz; };
 
 template<int_t N>
-struct fizzbuzz<int_<N>, true, true> { using type = FizzBuzz; };
+struct fizzbuzz_impl<int_<N>, true, true> { using type = FizzBuzz; };
+
+template<class N>
+using fizzbuzz = fizzbuzz_impl<N>;
 
 struct afficher_valeur {
 	std::ostream &os;

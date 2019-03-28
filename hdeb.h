@@ -41,7 +41,7 @@ template <class T, class ... Q>
 struct static_for_each<type_list<T, Q...>> {
 	template <class Op>
 	static void execute(Op oper) {
-		oper.execute<T>();
+		oper.template execute<T>();
 		static_for_each<type_list<Q...>>::execute(oper);
 	}
 };
