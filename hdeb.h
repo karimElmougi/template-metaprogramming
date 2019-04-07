@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <type_traits>
+#include "int.h"
 
 template <class...>
 struct type_list;
@@ -63,5 +64,21 @@ public:
 	template <class T>
 	void execute() {
 		os << typeid(T).name() << std::endl;
+	}
+};
+
+struct afficher_valeur {
+	std::ostream &os;
+	afficher_valeur(std::ostream &os) : os{ os } {
+	}
+
+	template <class T>
+	void execute() {
+		if constexpr(is_int_<T>::value) {
+			os << std::to_string(T::value) << std::endl;
+		}
+		else {
+			os << T::value << std::endl;
+		}
 	}
 };

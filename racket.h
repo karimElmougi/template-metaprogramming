@@ -1,7 +1,6 @@
 #pragma once
 #include <cstdint>
-
-using int_t = uint8_t;
+#include "int.h"
 
 template<template <class> class F, class TList>
 struct static_map;

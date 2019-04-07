@@ -1,5 +1,5 @@
-#include "fizzbuzz.h"
+#include "fibonacci.h"
 
 int main() {
-	fizz_buzz();
+	run();
 }
